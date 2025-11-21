@@ -9,5 +9,4 @@ if [ -d /container-entrypoint.d/ ]; then
     done
 fi
 
-args="$@"
-su puppet -c "exec /usr/sbin/webhook-go $args"
+exec setpriv --reuid puppet --regid 999 --clear-groups --reset-env /usr/sbin/webhook-go "$@"
