@@ -1,3 +1,3 @@
 #!/bin/sh
 
-/usr/local/bin/r10k deploy environment --modules
+su - puppet -c "/usr/local/bin/r10k deploy environment --modules"
