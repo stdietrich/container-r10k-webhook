@@ -13,6 +13,8 @@ RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o ./webhook-go
 
 FROM ghcr.io/voxpupuli/r10k:$R10K_VERSION-latest
 
+RUN apk add --no-cache setpriv
+
 LABEL org.label-schema.maintainer="Vox Pupuli Team <voxpupuli@groups.io>" \
       org.label-schema.vendor="Vox Pupuli" \
       org.label-schema.url="https://github.com/voxpupuli/container-r10k-webhook" \
