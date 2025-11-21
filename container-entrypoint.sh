@@ -3,8 +3,10 @@
 set -e
 
 if [ -d /container-entrypoint.d/ ]; then
-    find /container-entrypoint.d/ -type f -name "*.sh" \
-        -exec echo Running {} \; -exec sh {} \;
+    find "/container-entrypoint.d/" -follow -type f -name "*.sh" -print | sort -V | while read -r f; do
+        echo "Running ${f}"
+        sh "${f}"
+    done
 fi
 
 args="$@"
